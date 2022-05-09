@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pky.mapper.ReplyMapper">
+	
+	<!-- 댓글 리스트 조회 -->
+	<select id="readReply" resultType="com.pky.domain.ReplyVO">
+		select reply_no, content, writer, regdate
+		from tbl_reply
+		where board_no = #{board_no}
+	</select>
+	
+	<!-- 선택된 댓글 조회 -->
+	<select id="selectReply" resultType="com.pky.domain.ReplyVO">
+		select *
+		from tbl_reply
+		where reply_no = #{reply_rno}
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="writeReply">
+		insert into tbl_reply(board_no, reply_no, content, writer)
+		values(#{board_no}, seq_reply.nextval, #{content}, #{writer})
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="com.pky.domain.ReplyVO">
+		update tbl_reply 
+		set content = #{content}
+		where reply_no = #{reply_rno}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="com.pky.domain.ReplyVO">
+		delete from tbl_reply
+		where reply_no = #{reply_rno}
+	</delete>
+	
+</mapper>
