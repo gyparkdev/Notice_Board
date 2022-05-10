@@ -43,7 +43,8 @@
 		 	</th>
 	 	</tr>
     </table>
-                		
+          
+    <!-- 페이지 값 전달 -->      		
     <form id="actionForm" action="/board/list" method="get">
 		<input type="hidden" name="pageNum" value="${ cri.pageNum }">
 		<input type="hidden" name="amount" value="${ cri.amount }">
@@ -53,7 +54,7 @@
 	</form>
 	<hr>
 	
-	<!-- 댓글 -->
+	<!-- 댓글 리스트 조회 -->
 	<div id="reply">
   		<c:forEach items="${ replyList }" var="reply">
   			<li>
@@ -89,7 +90,6 @@
 	 
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>  
-             
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -100,7 +100,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		actionForm.find("input[name='board_no']").remove();
 		actionForm.submit();
-	});
+	})
 	
 	//글 수정 페이지로 이동
 	$(".modBtn").click(function(e){
@@ -112,7 +112,7 @@ $(document).ready(function(){
 			actionForm.attr("action", "/board/modify");
 			actionForm.submit();
 		}
-	});
+	})
 	
 	//댓글 작성
 	$(".replyWriteBtn").click(function(e){
@@ -122,7 +122,7 @@ $(document).ready(function(){
 			alert("댓글 내용을 입력하세요.");
 			$("#replyContent").focus();
 			return false;
-		};
+		}
 		
 		var content = $("#replyContent").val();
 		var writer = $("#replyWriter").val();
@@ -131,14 +131,14 @@ $(document).ready(function(){
 		actionForm.append("<input type='hidden' name='writer' value='" + writer + "'>'");
 		actionForm.attr("action", "/board/replyWrite")
 		.attr("method", "post").submit();
-	});
+	})
 	
 	//댓글 수정
 	$(".replyUpdateBtn").click(function(){
 		var reply_no = $(this).attr("data-reply_no");
 		actionForm.append("<input type='hidden' name='reply_no' value='" + reply_no + "'>'");
 		actionForm.attr("action", "/board/replyUpdateView").submit();
-	});
+	})
 	
 	//댓글 삭제
 	$(".replyDeleteBtn").click(function(){
@@ -150,7 +150,7 @@ $(document).ready(function(){
 			actionForm.attr("action", "/board/replyDelete")
 			.attr("method", "post").submit();
 		}
-	});
-});
+	})
+})
 </script>                       
 </html>

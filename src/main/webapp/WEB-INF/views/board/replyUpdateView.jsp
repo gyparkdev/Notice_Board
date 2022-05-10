@@ -31,16 +31,16 @@
 	
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>
-
 <script>
-	$(document).ready(function(){
-		$(".cancelBtn").click(function(){
-			location.href="/board/get?bno=${replyUpdate.bno }"
-						+ "&pageNum=${cri.pageNum}"
-						+ "&amount=${cri.amount}"
-						+ "&type=${cri.type}"
-						+ "&keyword=${cri.keyword}";
-		})
+//취소버튼 클릭 시, reply_no를 제외한 값 전달
+$(document).ready(function(){
+	$(".cancelBtn").click(function(){
+		location.href="/board/get?board_no=${replyUpdate.board_no }"
+					+ "&pageNum=${cri.pageNum}"
+					+ "&amount=${cri.amount}"
+					+ "&type=${cri.type}"
+					+ "&keyword=${cri.keyword}";
 	})
+})
 </script>
 </html>

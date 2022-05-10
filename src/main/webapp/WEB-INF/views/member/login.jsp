@@ -41,12 +41,12 @@ $(document).ready(function(){
 			$("input[name=userPw]").focus();
 			return false;
 		}
-	});
+	})
 
 	//회원가입 페이지 이동
 	$("#joinBtn").click(function(){
 		self.location = "/member/join";
 	})
-});	
+})
 </script>
 </html>

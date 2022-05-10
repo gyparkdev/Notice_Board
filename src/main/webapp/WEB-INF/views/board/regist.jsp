@@ -41,7 +41,6 @@
 	
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>
-
 <script>
 $(document).ready(function(){
 	//글 등록 유효성 검사

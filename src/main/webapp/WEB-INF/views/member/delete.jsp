@@ -37,37 +37,37 @@
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>
 <script type="text/javascript">
-	$(document).ready(function(){
-		
-		//취소버튼 클릭 시, 메인 화면으로 이동
-		$(".cancel").click(function(){
-			location.href="/";
-		})
-		
-		//회원탈퇴 비밀번호 체크
-		$("#submitBtn").click(function(){
-			if($("#userPw").val()==""){
-				alert("비밀번호를 입력해주세요.");
-				$("#userPw").focus();
-				return false;
-			}
-			$.ajax({
-				url: "/member/pwChk",
-				type: "post",
-				data: $("#delForm").serializeArray(),
-				success: function(data){
-					
-					if(data == 0){
-						alert("비밀번호가 틀렸습니다.");
-						return;
-					}else{
-						if(confirm("회원탈퇴하시겠습니까?")){
-							$("#delForm").submit();
-						}
+$(document).ready(function(){
+	
+	//취소버튼 클릭 시, 메인 화면으로 이동
+	$(".cancel").click(function(){
+		location.href="/";
+	})
+	
+	//회원탈퇴 비밀번호 체크
+	$("#submitBtn").click(function(){
+		if($("#userPw").val()==""){
+			alert("비밀번호를 입력해주세요.");
+			$("#userPw").focus();
+			return false;
+		}
+		$.ajax({
+			url: "/member/pwChk",
+			type: "post",
+			data: $("#delForm").serializeArray(),
+			success: function(data){
+				
+				if(data == 0){
+					alert("비밀번호가 틀렸습니다.");
+					return;
+				}else{
+					if(confirm("회원탈퇴하시겠습니까?")){
+						$("#delForm").submit();
 					}
 				}
-			})
+			}
 		})
 	})
+})
 </script>
 </html>

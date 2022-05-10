@@ -30,15 +30,16 @@ public class BoardController {
 	
 		//게시판 리스트 조회
 		@GetMapping("/list")
-		public void list(Criteria cri, Model model) {
+		public String list(Criteria cri, Model model) {
 			model.addAttribute("list", service.getList(cri));
 			model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));
+			return "board/list";
 		}
 		
 		//게시글 작성 페이지로 이동
 		@GetMapping("/regist")
 		public String registerGet() {
-			return "regist";
+			return "board/regist";
 		}
 		
 		//게시글 작성 
@@ -51,17 +52,19 @@ public class BoardController {
 		
 		//게시글 제목 클릭시 상세조회 페이지로 이동
 		@GetMapping("/get")
-		public void get(@RequestParam("board_no") Long board_no, @ModelAttribute("cri") Criteria cri, Model model) {
+		public String get(@RequestParam("board_no") Long board_no, @ModelAttribute("cri") Criteria cri, Model model) {
 			service.viewCount(board_no);
 			model.addAttribute("board", service.get(board_no));
 			List<ReplyVO> replyList = replyService.readReply(board_no);
 			model.addAttribute("replyList", replyList);
+			return "board/get";
 		}
 		
 		//게시글 수정 페이지로 이동
 		@GetMapping("/modify")
-		public void modify(@RequestParam("board_no") Long board_no, @ModelAttribute("cri") Criteria cri , Model model) {
+		public String modify(@RequestParam("board_no") Long board_no, @ModelAttribute("cri") Criteria cri , Model model) {
 			model.addAttribute("board", service.get(board_no));
+			return "/board/modify";
 		}
 		
 		//게시글 수정
@@ -109,9 +112,10 @@ public class BoardController {
 		
 		//댓글 수정 페이지로 이동
 		@GetMapping("/replyUpdateView")
-		public void replyUpdateView(ReplyVO reply, Criteria cri, Model model) {
+		public String replyUpdateView(ReplyVO reply, Criteria cri, Model model) {
 			model.addAttribute("replyUpdate", replyService.selectReply(reply.getBoard_no()));
 			model.addAttribute("cri", cri);
+			return "board/replyUpdateView";
 		}
 		
 		//댓글 수정

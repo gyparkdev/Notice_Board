@@ -14,28 +14,24 @@ import com.pky.domain.MemberVO;
 import com.pky.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member/*")
-@Log4j
 public class MemberController {
 
 	public final MemberService service;
 	
 	//회원가입 페이지로 이동
 	@GetMapping("/join")
-	public void joinGet() {
-		log.info("join....~!");
+	public String joinGet() {
+		return "member/join";
 	}
 	
 	//회원가입 
 	@PostMapping("/join")
 	public String join(MemberVO member) {
-		log.info("join post....");
 		int result = service.idChk(member);
-		
 		if(result == 1) {
 			return "/member/join";
 		}else if(result == 0) {
@@ -46,8 +42,8 @@ public class MemberController {
 	
 	//로그인 페이지로 이동
 	@GetMapping("/login")
-	public void loginGet() {
-		log.info("login get....");
+	public String loginGet() {
+		return "member/login";
 	}
 	
 	//로그인
@@ -61,22 +57,20 @@ public class MemberController {
 		}else {
 			session.setAttribute("member", login);
 		}
-		
 		return "redirect:/";
 	}
 	
 	//로그아웃 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		log.info("logout...");
 		session.invalidate();
 		return "redirect:/";
 	}
 	
 	//회원정보 수정 페이지로 이동
 	@GetMapping("modify")
-	public void memberUpdateView() {
-		log.info("modify Get..");
+	public String memberUpdateView() {
+		return "member/modify";
 	}
 	
 	//회원정보 수정 
@@ -89,8 +83,8 @@ public class MemberController {
 	
 	//회원탈퇴 페이지로 이동
 	@GetMapping("delete")
-	public void memberDeleteView() {
-		log.info("delete Get..");
+	public String memberDeleteView() {
+		return "member/delete";
 	}
 	
 	//회원탈퇴
@@ -111,11 +105,10 @@ public class MemberController {
 		}
 		service.delete(member);
 		session.invalidate();
-		
 		return "redirect:/";
 	}
 	
-	//비밀번호 체크
+	//회원탈퇴 시, 비밀번호 체크
 	@ResponseBody
 	@PostMapping("/pwChk")
 	public int pwChk(MemberVO member) {
@@ -123,7 +116,7 @@ public class MemberController {
 		return result;
 	}
 	
-	//아이디 중복 체크
+	//회원가입 시, 아이디 중복 확인
 	@ResponseBody
 	@PostMapping("/idChk")
 	public int idChk(MemberVO member) {

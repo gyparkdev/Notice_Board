@@ -10,6 +10,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+	
 	<table border="1">
 		<thead>
 			<tr>

@@ -33,6 +33,7 @@
 	 		</tr>
 	    </table>
 	    
+	    <!-- 페이지 값, 검색 조건 -->
 		<input type="hidden" id="pageNum" name="pageNum" value="${ cri.pageNum }">
 		<input type="hidden" id="amount" name="amount" value="${ cri.amount }">
 		<input type="hidden" id="type" name="type" value="${ cri.type }">
@@ -45,9 +46,7 @@
                 
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>       
-
 <script type="text/javascript">
-
 $(document).ready(function(){
 	
 	var formObj = $("form");
