@@ -9,40 +9,49 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
-                        
-    <h3>글 수정/삭제</h3>
-    <form>
-	    <table border="1">
-	 		<tr>
-	 			<th>글번호</th>
-	 			<td><input type="text" name='board_no' readonly="readonly" value='<c:out value="${ board.board_no }"/>'></td>
-	 		</tr>
-	 		<tr>
-	 			<th>제목</th>
-	 			<td><input type="text" name='title' value='<c:out value="${ board.title }"/>'></td>
-	 		</tr>
-	 		<tr>
-	 			<th>내용</th>
-	 			<td>
-	 				<textarea rows="5" cols="50" name="content"><c:out value="${ board.content }"/></textarea>
-	 			</td>
-	 		</tr>
-	 		<tr>
-	 			<th>작성자</th>
-	 			<td><input type="text" name='writer' readonly="readonly" value='<c:out value="${ board.writer }"/>'></td>
-	 		</tr>
-	    </table>
-	    
-	    <!-- 페이지 값, 검색 조건 -->
-		<input type="hidden" id="pageNum" name="pageNum" value="${ cri.pageNum }">
-		<input type="hidden" id="amount" name="amount" value="${ cri.amount }">
-		<input type="hidden" id="type" name="type" value="${ cri.type }">
-		<input type="hidden" id="keyword" name="keyword" value="${ cri.keyword}">
-		
-		<button type="button" data-oper="modify">글 수정</button>
-		<button type="button" data-oper="remove">글 삭제</button>
-		<button type="button" data-oper="list">글 목록</button>
-    </form>
+                
+    <div class="row">
+	    <div class="col-lg-12">
+	        <h1 class="page-header">글 수정/삭제</h1>
+	    </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">글 수정/삭제</div>
+				<div class="panel-body">
+					<form>
+						<div class="form-group">
+                			<label>글번호</label>
+                			<input class="form-control" name='board_no' readonly="readonly" value='<c:out value="${board.board_no }"/>'>
+                		</div>
+						<div class="form-group">
+                			<label>제목</label>
+                			<input class="form-control" name='title' value='<c:out value="${board.title }"/>'>
+                		</div>
+						<div class="form-group">
+                			<label>내용</label>
+                			<textarea class="form-control" rows="5" cols="50" name="content"><c:out value="${board.content }"/></textarea>
+                		</div>
+                		
+						<div class="form-group">
+                			<label>작성자</label>
+                			<input class="form-control" name='writer' readonly="readonly" value='<c:out value="${ board.writer }"/>'></td>
+               			</div>
+               		
+	                	<input type="hidden" id="pageNum" name="pageNum" value="${ cri.pageNum }">
+	                	<input type="hidden" id="amount" name="amount" value="${ cri.amount }">
+	                	<input type="hidden" id="type" name="type" value="${ cri.type }">
+	                	<input type="hidden" id="keyword" name="keyword" value="${ cri.keyword }">
+	                	
+	               		<button type="button" class="btn btn-default" data-oper="modify">글 수정</button>
+	               		<button type="button" class="btn btn-danger" data-oper="remove">글 삭제</button>
+	               		<button type="button" class="btn btn-info" data-oper="list">글 목록</button>
+           	    	</form>
+                </div>
+            </div>
+        </div>
+    </div>
                 
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>       

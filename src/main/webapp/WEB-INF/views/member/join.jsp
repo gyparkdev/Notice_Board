@@ -10,26 +10,39 @@
 <body>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 
-    <h3>회원가입</h3>
-    <form id="joinForm" action="/member/join" method="post">
-	     <div>
-	         <input type="text" placeholder="ID" id="userId" name="userId" type="text" autofocus>
-	         <button class="btn btn-success" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
-	     </div>
-	     <div>
-	         <input type="text" placeholder="Password" name="userPw" type="password" value="">
-	     </div>
-	     <div>
-	         <input type="text" placeholder="Name" name="userName" type="text" value="">
-	     </div>
-	     <div>
-	         <input type="text" placeholder="E-mail" name="userEmail" type="email" value="">
-	     </div>
-     
-	     <button id="submitBtn" type="submit">가입하기</button>                           
-	     <button id="cancelBtn" type="button">취소</button>                          
-    </form>
-    
+	<div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">회원가입</h3>
+                    </div>
+                    <div class="panel-body">
+                    
+                        <form id="joinForm" role="form" action="/member/join" method="post">
+	                        <div class="form-group">
+	                            <input class="form-control" placeholder="ID" id="userId" name="userId" type="text" autofocus>
+	                            <button class="btn btn-success" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+	                        </div>
+	                        <div class="form-group">
+	                            <input class="form-control" placeholder="Password" name="userPw" type="password" value="">
+	                        </div>
+	                        <div class="form-group">
+	                            <input class="form-control" placeholder="Name" name="userName" type="text" value="">
+	                        </div>
+	                        <div class="form-group">
+	                            <input class="form-control" placeholder="E-mail" name="userEmail" type="email" value="">
+	                        </div>
+	                        
+	                        <button id="submitBtn" type="submit" class="btn btn-lg btn-success btn-block">가입하기</button>                           
+	                        <button id="cancelBtn" type="button" class="btn btn-lg btn-faul btn-block">취소</button>                          
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>
 <script>
@@ -42,31 +55,39 @@ $(document).ready(function(){
 	
 	//회원가입 유효성 검사
 	$("#submitBtn").click(function(){
-		if($("input[name=userId]").val() == ""){
+		if($("input[name='userId']").val() == ""){
 			alert("아이디를 입력해주세요.");
-			$("input[name=userId]").focus();
+			$("input[name='userId']").focus();
 			return false;
 		}
-		if($("input[name=userPw]").val() == ""){
+		if($("input[name='userPw']").val() == ""){
 			alert("비밀번호를 입력해주세요.");
-			$("input[name=userPw]").focus();
+			$("input[name='userPw']").focus();
 			return false;
 		}
-		if($("input[name=userName]").val() == ""){
+		if($("input[name='userName']").val() == ""){
 			alert("이름을 입력해주세요.");
-			$("input[name=userName]").focus();
+			$("input[name='userName']").focus();
 			return false;
 		}
-		if($("input[name=userEmail]").val() == ""){
+		if($("input[name='userEmail']").val() == ""){
 			alert("이메일을 입력해주세요.");
-			$("input[name=userEmail]").focus();
+			$("input[name='userEmail']").focus();
+			return false;
+		}
+		
+		var email = $("input[name='userEmail']").val();
+		var regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+		
+		if(!regEmail.test(email)){
+			alert("유효한 이메일을 입력해주세요.");
 			return false;
 		}
 		
 		//아이디 중복확인
 		var idChkVal = $("#idChk").val();
 		if(idChkVal == "N"){
-			alert("중복확인 버튼을 눌러주세요.");
+			alert("아이디 중복확인 버튼을 눌러주세요.");
 			return false;
 		}else if(idChkVal == "Y"){
 			$("#joinForm").submit();

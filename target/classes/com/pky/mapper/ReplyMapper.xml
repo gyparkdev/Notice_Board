@@ -14,7 +14,7 @@
 	<select id="selectReply" resultType="com.pky.domain.ReplyVO">
 		select *
 		from tbl_reply
-		where reply_no = #{reply_rno}
+		where reply_no = #{reply_no}
 	</select>
 	
 	<!-- 댓글 작성 -->
@@ -27,13 +27,13 @@
 	<update id="updateReply" parameterType="com.pky.domain.ReplyVO">
 		update tbl_reply 
 		set content = #{content}
-		where reply_no = #{reply_rno}
+		where reply_no = #{reply_no}
 	</update>
 	
 	<!-- 댓글 삭제 -->
 	<delete id="deleteReply" parameterType="com.pky.domain.ReplyVO">
 		delete from tbl_reply
-		where reply_no = #{reply_rno}
+		where reply_no = #{reply_no}
 	</delete>
 	
 </mapper>

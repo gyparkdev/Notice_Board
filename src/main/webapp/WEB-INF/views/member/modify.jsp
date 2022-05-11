@@ -5,35 +5,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>회원정보 수정</title>
+	<title>회원정보수정</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
-                        
-    <h3>회원정보수정</h3>
-	<form action="/member/modify" method="post">
-		<table border="1">
-			<tr>
-				<th>아이디</th>
-				<td><input type="text" id="userId" name="userId" readonly="readonly" value="${ member.userId }"></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" id="userPw" name="userPw"></td>
-			</tr>
-			<tr>
-				<th>성명</th>
-				<td><input type="text" id="userName" name="userName" readonly="readonly" value="${ member.userName }"></td>
-			</tr>
-			<tr>
-				<th colspan="2">
-					<button id="submitBtn" type="submit">수정</button>
-					<button id="cancelBtn" type="button">취소</button>
-				</th>
-			</tr>
-		</table>
-	</form>
-	
+           
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">회원정보수정</h3>
+                    </div>
+                    <div class="panel-body">
+						<form action="/member/modify" method="post">
+							<div class="form-group">
+								<label>아이디</label>
+								<input class="form-control" type="text" id="userId" name="userId" readonly="readonly" value="${member.userId }">
+							</div>		
+							<div class="form-group">
+								<label>비밀번호</label>
+								<input class="form-control" type="password" id="userPw" name="userPw">
+							</div>		
+							<div class="form-group">
+								<label>성명</label>
+								<input class="form-control" type="text" id="userName" name="userName" readonly="readonly" value="${member.userName }">
+							</div>		
+							<div class="form-group">
+								<button id="submitBtn" class="btn btn-success" type="submit">수정</button>
+								<button id="cancelBtn" class="cancel btn btn-danger" type="button">취소</button>
+							</div>		
+						</form>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+                
     <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>
 <script>

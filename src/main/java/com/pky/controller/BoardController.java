@@ -33,17 +33,17 @@ public class BoardController {
 		public String list(Criteria cri, Model model) {
 			model.addAttribute("list", service.getList(cri));
 			model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));
-			return "board/list";
+			return "/board/list";
 		}
 		
 		//게시글 작성 페이지로 이동
-		@GetMapping("/regist")
+		@GetMapping("/register")
 		public String registerGet() {
-			return "board/regist";
+			return "/board/register";
 		}
 		
 		//게시글 작성 
-		@PostMapping("/regist")
+		@PostMapping("/register")
 		public String register(BoardVO board, RedirectAttributes rttr) {
 			Long board_no = service.register(board);
 			rttr.addFlashAttribute("result", board_no);
@@ -57,7 +57,7 @@ public class BoardController {
 			model.addAttribute("board", service.get(board_no));
 			List<ReplyVO> replyList = replyService.readReply(board_no);
 			model.addAttribute("replyList", replyList);
-			return "board/get";
+			return "/board/get";
 		}
 		
 		//게시글 수정 페이지로 이동
@@ -78,7 +78,6 @@ public class BoardController {
 			rttr.addAttribute("amount", cri.getAmount());
 			rttr.addAttribute("type", cri.getType());
 			rttr.addAttribute("keyword", cri.getKeyword());
-			
 			return "redirect:/board/list";
 		}
 		
@@ -93,41 +92,39 @@ public class BoardController {
 			rttr.addAttribute("amount", cri.getAmount());
 			rttr.addAttribute("type", cri.getType());
 			rttr.addAttribute("keyword", cri.getKeyword());
-			
 			return "redirect:/board/list";
 		}
 		
+		/* 댓글 */
 		//댓글 작성 
 		@PostMapping("/replyWrite")
 		public String replyWrite(ReplyVO reply, Criteria cri, RedirectAttributes rttr) {
 			replyService.writeReply(reply);
-			rttr.addAttribute("bno", reply.getBoard_no());
+			rttr.addAttribute("board_no", reply.getBoard_no());
 			rttr.addAttribute("pageNum", cri.getPageNum());
 			rttr.addAttribute("amount", cri.getAmount());
 			rttr.addAttribute("type", cri.getType());
 			rttr.addAttribute("keyword", cri.getKeyword());
-			
 			return "redirect:/board/get";
 		}
 		
 		//댓글 수정 페이지로 이동
 		@GetMapping("/replyUpdateView")
 		public String replyUpdateView(ReplyVO reply, Criteria cri, Model model) {
-			model.addAttribute("replyUpdate", replyService.selectReply(reply.getBoard_no()));
+			model.addAttribute("replyUpdate", replyService.selectReply(reply.getReply_no()));
 			model.addAttribute("cri", cri);
-			return "board/replyUpdateView";
+			return "/board/replyUpdateView";
 		}
 		
 		//댓글 수정
 		@PostMapping("/replyUpdate")
 		public String replyUpdate(ReplyVO reply, Criteria cri, RedirectAttributes rttr) {
 			replyService.updateReply(reply);
-			rttr.addAttribute("bno", reply.getBoard_no());
+			rttr.addAttribute("board_no", reply.getBoard_no());
 			rttr.addAttribute("pageNum", cri.getPageNum());
 			rttr.addAttribute("amount", cri.getAmount());
 			rttr.addAttribute("type", cri.getType());
 			rttr.addAttribute("keyword", cri.getKeyword());
-			
 			return "redirect:/board/get";
 		}
 		
@@ -135,12 +132,11 @@ public class BoardController {
 		@PostMapping("/replyDelete")
 		public String replyDelete(ReplyVO reply, Criteria cri, RedirectAttributes rttr) {
 			replyService.deleteReply(reply);
-			rttr.addAttribute("bno", reply.getBoard_no());
+			rttr.addAttribute("board_no", reply.getBoard_no());
 			rttr.addAttribute("pageNum", cri.getPageNum());
 			rttr.addAttribute("amount", cri.getAmount());
 			rttr.addAttribute("type", cri.getType());
 			rttr.addAttribute("keyword", cri.getKeyword());
-			
 			return "redirect:/board/get";
 		}
 }

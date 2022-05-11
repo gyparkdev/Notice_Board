@@ -9,25 +9,32 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
-                        
-	<h3>댓글 수정</h3>
-	<hr>
-	<form name="updateForm" action="/board/replyUpdate" method="post">
-		<input type="hidden" name="board_no" value="${ replyUpdate.board_no }">
-		<input type="hidden" name="reply_no" value="${ replyUpdate.reply_no }">
-		<input type="hidden" name="pageNum" value="${ cri.pageNum }">
-		<input type="hidden" name="amount" value="${ cri.amount }">
-		<input type="hidden" name="type" value="${ cri.type}">
-		<input type="hidden" name="keyword" value="${ cri.keyword }">
-	
-   		<input type="text" id="replyContent" name="content">댓글 내용
-   		<div>
-  			<input type="text" id="replyContent" name="content" value="${replyUpdate.content }">
-  		</div>
-  		
-		<button type="submit" class="updateBtn btn btn-success">저장</button>
-		<button type="button" class="cancelBtn btn btn-danger">취소</button>
-	</form>
+            
+    <div id="root">
+		<header>
+			<h1>댓글 수정</h1>
+		</header>
+		<hr>
+		<section id="container">
+			<form name="updateForm" action="/board/replyUpdate" method="post">
+				<input type="hidden" name="board_no" value="${ replyUpdate.board_no }">
+				<input type="hidden" name="reply_no" value="${ replyUpdate.reply_no }">
+				<input type="hidden" name="pageNum" value="${ cri.pageNum }">
+				<input type="hidden" name="amount" value="${ cri.amount }">
+				<input type="hidden" name="type" value="${ cri.type}">
+				<input type="hidden" name="keyword" value="${ cri.keyword }">
+			
+				<div class="form-group">
+             		<label for="content" class="col-sm-2 control-label">댓글 내용</label>
+              		<div class="col-sm-10">
+              			<input type="text" id="replyContent" class="form-control" name="content" value="${ replyUpdate.content }">
+						<button type="submit" class="updateBtn btn btn-success">저장</button>
+						<button type="button" class="cancelBtn btn btn-danger">취소</button>
+					</div>
+	           	</div>
+			</form>
+		</section>
+	</div>       
 	
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
 </body>
@@ -36,10 +43,10 @@
 $(document).ready(function(){
 	$(".cancelBtn").click(function(){
 		location.href="/board/get?board_no=${replyUpdate.board_no }"
-					+ "&pageNum=${cri.pageNum}"
-					+ "&amount=${cri.amount}"
-					+ "&type=${cri.type}"
-					+ "&keyword=${cri.keyword}";
+					+ "& pageNum=${ cri.pageNum }"
+					+ "& amount=${ cri.amount }"
+					+ "& type=${ cri.type }"
+					+ "& keyword=${ cri.keyword }";
 	})
 })
 </script>
