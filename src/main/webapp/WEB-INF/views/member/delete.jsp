@@ -21,7 +21,7 @@
 						<form id="delForm" action="/member/delete" method="post">
 							<div class="form-group">
 								<label>아이디</label>
-								<input class="form-control" type="text" id="userId" name="userId" value="${member.userId }" readonly="readonly">
+								<input class="form-control" type="text" id="userId" name="userId" value="${ member.userId }" readonly="readonly">
 							</div>		
 							<div class="form-group">
 								<label>비밀번호</label>
@@ -29,7 +29,7 @@
 							</div>		
 							<div class="form-group">
 								<label>성명</label>
-								<input class="form-control" type="text" id="userName" name="userName" value="${member.userName }" readonly="readonly">
+								<input class="form-control" type="text" id="userName" name="userName" value="${ member.userName }" readonly="readonly">
 							</div>		
 							<div class="form-group">
 								<button id="submitBtn" class="btn btn-success" type="submit">회원탈퇴</button>

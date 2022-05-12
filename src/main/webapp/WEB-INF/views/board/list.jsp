@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 리스트</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
@@ -30,12 +30,12 @@
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>글번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>조회수</th>
-                            <th>작성일</th>
-                            <th>수정일</th>
+                            <th width="10%">글번호</th>
+                            <th width="30%">제목</th>
+                            <th width="10%">작성자</th>
+                            <th width="10%">조회수</th>
+                            <th width="20%">작성일</th>
+                            <th width="20%">수정일</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,7 +110,7 @@
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
 		    <div class="modal-header">
-		      <h5 class="modal-title">Modal title</h5>
+		      <h5 class="modal-title">알림창</h5>
 		      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		        <span aria-hidden="true">&times;</span>
 		      </button>

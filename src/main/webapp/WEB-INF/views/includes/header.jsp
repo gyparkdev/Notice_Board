@@ -27,9 +27,24 @@
 	
 	<!-- Custom Fonts -->
 	<link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+<style>
+	li{list-style:none; display:inline; padding:6px;}
+</style>
 </head>
 
 <body>
+	<ul>
+		<li><a href="/">홈</a></li>
+		<li>
+			<c:if test="${member != null }">
+				<p>${member.userName}님 (${member.userId }) 접속...</p>
+			</c:if>
+			<c:if test="${member == null }">
+				<p>손님회원 입니다.</p>
+			</c:if>
+		</li>
+	</ul>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     	<div class="navbar-header">
         	<a class="navbar-brand" href="/board/list">자유 게시판</a>
